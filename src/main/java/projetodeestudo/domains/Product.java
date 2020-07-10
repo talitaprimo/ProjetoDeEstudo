@@ -12,5 +12,7 @@ public class Product {
     @NotNull
     private final String sku;
     private final double price;
+    @NotNull
+    private final Seller seller;
 
 }

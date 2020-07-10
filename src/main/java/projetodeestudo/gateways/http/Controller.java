@@ -1,14 +1,27 @@
 package projetodeestudo.gateways.http;
 
-import org.springframework.validation.annotation.Validated;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import projetodeestudo.domains.Cart;
 import projetodeestudo.domains.Product;
+import projetodeestudo.domains.Seller;
+import projetodeestudo.gateways.SellerGateway;
+import projetodeestudo.usecases.GetCartTotal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/teste")
 public class Controller {
+
+    private final GetCartTotal getCartTotal;
+
+    private Cart cart = new Cart();
+
+    private final SellerGateway sellerGateway;
+
     @GetMapping("/Oi")
     public String digaOi() {
         return "Olá";
@@ -59,4 +72,38 @@ public class Controller {
                 .build();
     }
     //required = true é padrão
+
+//    @PostMapping("/total")
+//    public boolean total(@RequestBody List<Product> products){
+//
+//    }
+
+    @PostMapping("/addProduct")
+    public Cart addProduct(@RequestBody List<Product> p) {
+        if(cart.getProducts() != null) {
+            cart.getProducts().addAll(p);
+        } else {
+            cart.setProducts(p);
+        }
+        cart.setTotal(getCartTotal.execute(cart.getProducts()));
+        return cart;
+    }
+
+    @PostMapping("/removeProduct")
+    public Cart removeProduct(@RequestBody List<Product> p){
+        if(cart.getProducts() != null) {
+            for (Product product: p) {
+                cart.getProducts().remove(product);
+            }
+        } else {
+            cart.setProducts(new ArrayList<>());
+        }
+        cart.setTotal(getCartTotal.execute(cart.getProducts()));
+        return cart;
+    }
+
+    @PostMapping("/saveSeller")
+    public Seller saveSeller(@RequestBody Seller s){
+        return sellerGateway.save(s);
+    }
 }
