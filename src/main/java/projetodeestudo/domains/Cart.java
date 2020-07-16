@@ -9,6 +9,10 @@ public class Cart {
 
     private List<Product> products;
 
+    private double frete;
+
+    private double precoTotal;
+
     private double total;
 
 }

@@ -7,12 +7,15 @@ import lombok.*;
 @EqualsAndHashCode(of = "sku")
 @ToString(of={"name", "price"})
 public class Product {
-    @NotNull
     private final String name;
     @NotNull
     private final String sku;
-    private final double price;
+    private final double precoUnitario;
     @NotNull
-    private final Seller seller;
+    private final Seller vendedor;
+
+    private int quantidade;
+
+    private boolean embPres;
 
 }

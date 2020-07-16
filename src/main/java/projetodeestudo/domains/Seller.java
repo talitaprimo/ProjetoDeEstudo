@@ -11,7 +11,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @EqualsAndHashCode(of = "id")
 @Document
 public class Seller {
-    private String name;
+
     @Id
     private String id;
+
+    private String name;
+
 }

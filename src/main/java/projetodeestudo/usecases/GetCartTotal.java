@@ -15,7 +15,7 @@ public class GetCartTotal {
 
         for (Product product : products
         ) {
-            total = product.getPrice() + total;
+            total = product.getPrecoUnitario() + total;
         }
         for (Seller seller : getDiferentSellers(products)
         ) {
@@ -33,7 +33,7 @@ public class GetCartTotal {
 
         for (Product product : products
         ) {
-            sellers.add(product.getSeller());
+            sellers.add(product.getVendedor());
         }
         return sellers;
     }
