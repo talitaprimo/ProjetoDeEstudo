@@ -7,6 +7,7 @@ import projetodeestudo.domains.Seller;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 @Service
 public class GetCartTotal {
 
@@ -15,7 +16,7 @@ public class GetCartTotal {
 
         for (Product product : products
         ) {
-            total = product.getPrecoUnitario() + total;
+            total = product.getUnitPrice() + total;
         }
         for (Seller seller : getDiferentSellers(products)
         ) {
@@ -33,7 +34,7 @@ public class GetCartTotal {
 
         for (Product product : products
         ) {
-            sellers.add(product.getVendedor());
+            sellers.add(product.getSeller());
         }
         return sellers;
     }

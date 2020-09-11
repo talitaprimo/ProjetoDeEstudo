@@ -3,7 +3,7 @@ package projetodeestudo.domains;
 import lombok.Data;
 
 @Data
-public class InfPgto {
+public class InfCard {
 
     private String numCartao;
     private String dataExp;

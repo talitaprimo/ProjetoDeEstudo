@@ -10,12 +10,12 @@ public class Product {
     private final String name;
     @NotNull
     private final String sku;
-    private final double precoUnitario;
+    private final double unitPrice;
     @NotNull
-    private final Seller vendedor;
+    private final Seller seller;
 
-    private int quantidade;
+    private int quantity;
 
-    private boolean embPres;
+    private boolean giftWrap;
 
 }

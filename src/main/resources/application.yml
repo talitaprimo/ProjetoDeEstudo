@@ -1,6 +1,8 @@
 server:
-  port: 8081
+  port: 8085
 spring:
   data:
     mongodb:
       uri: mongodb://localhost/test # Mongo database URI. When set, host and port are ignored.
+payment:
+  url: localhost:8080/payment

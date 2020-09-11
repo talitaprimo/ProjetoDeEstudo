@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import projetodeestudo.domains.Cart;
 import projetodeestudo.domains.Product;
 import projetodeestudo.domains.Seller;
+import projetodeestudo.extensions.JavaToJson;
 import projetodeestudo.gateways.SellerGateway;
 import projetodeestudo.usecases.GetCartTotal;
 
@@ -21,6 +22,8 @@ public class Controller {
     private Cart cart = new Cart();
 
     private final SellerGateway sellerGateway;
+
+    private final JavaToJson javaToJson;
 
     @GetMapping("/Oi")
     public String digaOi() {
@@ -50,6 +53,7 @@ public class Controller {
 
     @PostMapping("/compare")
     public boolean compare(@RequestBody List<Product> products) {
+        System.out.println(javaToJson.convert(products));
         return products.get(0).equals(products.get(1));
     }
 
@@ -104,6 +108,7 @@ public class Controller {
 
     @PostMapping("/saveSeller")
     public Seller saveSeller(@RequestBody Seller s){
+        System.out.println(javaToJson.convert(s));
         return sellerGateway.save(s);
     }
 }
